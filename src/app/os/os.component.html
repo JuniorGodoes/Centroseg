@@ -1,0 +1,155 @@
+<app-menu></app-menu>
+
+<!-- <div class="spinner">
+  <mat-progress-bar mode="query"></mat-progress-bar>
+</div> -->
+
+<mat-card class="example-card little-card" *ngIf="filtro">
+  <div class="options">
+    <h2>Filtro OS</h2>
+
+    <input type="text" class="form-control select2" placeholder="Ano" #ano >
+
+    <button type="button" class="btn btn-outline-primary margin" (click)="Execute(ano.value)">Ok</button>
+  </div>
+</mat-card>
+
+<div class="centrocusto center" *ngIf="totalOSjan">
+  <mat-card class="example-card text-white center title">
+      <div class="centrocusto">
+        <h2>OS</h2>
+        <h2></h2>
+      </div>
+      <div>
+        <h2></h2>
+      </div>
+  </mat-card>
+</div>
+
+<mat-card *ngIf="totalOSjan">
+
+  <mat-card-actions>
+    <button mat-button></button>
+  </mat-card-actions>
+
+  <br>
+
+  <table class="table table-bordered table-borderless table-hover">
+    <thead>
+      <tr>
+        <th class="center fixed bg-primary text-white"></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Total</h2></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Jan</h2></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Fev</h2></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Mar</h2></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Abr</h2></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Mai</h2></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Jun</h2></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Jul</h2></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Ago</h2></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Set</h2></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Out</h2></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Nov</h2></th>
+        <th class="center fixed bg-primary text-white"                     ><h2>Dez</h2></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><h2>Todas OS</h2></td>
+        <td class="center">{{ totalOS }}</td>
+        <td class="center">{{ totalOSjan }}</td>
+        <td class="center">{{ totalOSfev }}</td>
+        <td class="center">{{ totalOSmar }}</td>
+        <td class="center">{{ totalOSabr }}</td>
+        <td class="center">{{ totalOSmai }}</td>
+        <td class="center">{{ totalOSjun }}</td>
+        <td class="center">{{ totalOSjul }}</td>
+        <td class="center">{{ totalOSago }}</td>
+        <td class="center">{{ totalOSset }}</td>
+        <td class="center">{{ totalOSout }}</td>
+        <td class="center">{{ totalOSnov }}</td>
+        <td class="center">{{ totalOSdez }}</td>
+      </tr>
+      <tr>
+        <td><h2>Concluida</h2></td>
+        <td class="center">{{ totalconcluida }}</td>
+        <td class="center">{{ concluidaOSjan }}</td>
+        <td class="center">{{ concluidaOSfev }}</td>
+        <td class="center">{{ concluidaOSmar }}</td>
+        <td class="center">{{ concluidaOSabr }}</td>
+        <td class="center">{{ concluidaOSmai }}</td>
+        <td class="center">{{ concluidaOSjun }}</td>
+        <td class="center">{{ concluidaOSjul }}</td>
+        <td class="center">{{ concluidaOSago }}</td>
+        <td class="center">{{ concluidaOSset }}</td>
+        <td class="center">{{ concluidaOSout }}</td>
+        <td class="center">{{ concluidaOSnov }}</td>
+        <td class="center">{{ concluidaOSdez }}</td>
+      </tr>
+      <tr>
+        <td><h2>Conferida</h2></td>
+        <td class="center">{{ totalconferida }}</td>
+        <td class="center">{{ conferidaOSjan }}</td>
+        <td class="center">{{ conferidaOSfev }}</td>
+        <td class="center">{{ conferidaOSmar }}</td>
+        <td class="center">{{ conferidaOSabr }}</td>
+        <td class="center">{{ conferidaOSmai }}</td>
+        <td class="center">{{ conferidaOSjun }}</td>
+        <td class="center">{{ conferidaOSjul }}</td>
+        <td class="center">{{ conferidaOSago }}</td>
+        <td class="center">{{ conferidaOSset }}</td>
+        <td class="center">{{ conferidaOSout }}</td>
+        <td class="center">{{ conferidaOSnov }}</td>
+        <td class="center">{{ conferidaOSdez }}</td>
+      </tr>
+      <tr>
+        <td><h2>Pendente</h2></td>
+        <td class="center">{{ totalpendente }}</td>
+        <td class="center">{{ pendenteOSjan }}</td>
+        <td class="center">{{ pendenteOSfev }}</td>
+        <td class="center">{{ pendenteOSmar }}</td>
+        <td class="center">{{ pendenteOSabr }}</td>
+        <td class="center">{{ pendenteOSmai }}</td>
+        <td class="center">{{ pendenteOSjun }}</td>
+        <td class="center">{{ pendenteOSjul }}</td>
+        <td class="center">{{ pendenteOSago }}</td>
+        <td class="center">{{ pendenteOSset }}</td>
+        <td class="center">{{ pendenteOSout }}</td>
+        <td class="center">{{ pendenteOSnov }}</td>
+        <td class="center">{{ pendenteOSdez }}</td>
+      </tr>
+      <tr>
+        <td><h2>Executando</h2></td>
+        <td class="center">{{ totalexecutando }}</td>
+        <td class="center">{{ executandoOSjan }}</td>
+        <td class="center">{{ executandoOSfev }}</td>
+        <td class="center">{{ executandoOSmar }}</td>
+        <td class="center">{{ executandoOSabr }}</td>
+        <td class="center">{{ executandoOSmai }}</td>
+        <td class="center">{{ executandoOSjun }}</td>
+        <td class="center">{{ executandoOSjul }}</td>
+        <td class="center">{{ executandoOSago }}</td>
+        <td class="center">{{ executandoOSset }}</td>
+        <td class="center">{{ executandoOSout }}</td>
+        <td class="center">{{ executandoOSnov }}</td>
+        <td class="center">{{ executandoOSdez }}</td>
+      </tr>
+      <tr>
+        <td><h2>Em pausa</h2></td>
+        <td class="center">{{ totalempausa }}</td>
+        <td class="center">{{ empausaOSjan }}</td>
+        <td class="center">{{ empausaOSfev }}</td>
+        <td class="center">{{ empausaOSmar }}</td>
+        <td class="center">{{ empausaOSabr }}</td>
+        <td class="center">{{ empausaOSmai }}</td>
+        <td class="center">{{ empausaOSjun }}</td>
+        <td class="center">{{ empausaOSjul }}</td>
+        <td class="center">{{ empausaOSago }}</td>
+        <td class="center">{{ empausaOSset }}</td>
+        <td class="center">{{ empausaOSout }}</td>
+        <td class="center">{{ empausaOSnov }}</td>
+        <td class="center">{{ empausaOSdez }}</td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>

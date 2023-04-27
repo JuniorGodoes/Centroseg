@@ -1,0 +1,18 @@
+<mat-toolbar>
+  <div>
+
+    <button mat-button [matMenuTriggerFor]="aboveMenu"><h3>Tecnico</h3></button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+      <button mat-menu-item routerLink="/os">OS</button>
+      <button mat-menu-item >Atendimento Tatico</button>
+    </mat-menu>
+        
+  </div>
+
+  <div class="centro-custo">
+    <button type="button" class="btn btn-outline-danger" routerLink="/">
+      Sair
+    </button>
+  </div>
+
+</mat-toolbar>
