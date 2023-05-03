@@ -19,8 +19,8 @@
 <div class="centrocusto center" *ngIf="totalOSjan">
   <mat-card class="example-card text-white center title">
       <div class="centrocusto">
-        <h2>OS</h2>
-        <h2> - {{ status }}</h2>
+        <h2>OS </h2>
+        <h2 *ngIf="status">({{ status }})</h2>
       </div>
       <div>
         <h2>{{ ano }}</h2>

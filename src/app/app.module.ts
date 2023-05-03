@@ -17,14 +17,12 @@ import { NgModule } from '@angular/core';
 import { MenuComponent } from './menu/menu.component';
 import { OSComponent } from './os/os.component';
 import { AppRoutingModule } from './app-routing.module';
-import { TesteComponent } from './teste/teste.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    OSComponent,
-    TesteComponent
+    OSComponent
   ],
   imports: [
     BrowserModule,

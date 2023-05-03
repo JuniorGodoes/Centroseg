@@ -4,7 +4,7 @@ import { Apollo, gql } from 'apollo-angular';
 import { Subscription } from 'rxjs';
 
 // We use the gql tag to parse our query string into a query document
-const GET_POSTS = gql`
+const GET_ORDENS = gql`
   query ordensServico($skip: Int!, $take: Int!, $aberturaDe: DateTime!, $aberturaAte: DateTime! ) {
     ordensServico(skip: $skip, take: $take, aberturaDe: $aberturaDe, aberturaAte: $aberturaAte ) {
       id
@@ -157,38 +157,49 @@ export class OSComponent implements OnInit{
   }
 
 
-  Execute(ano:any, tipo:any){
+  async Execute(ano:any, tipo:any){
 
     this.filtro = false
     this.spinner = true
     this.tipo = tipo
     this.ano = ano
 
-    let num = 0
-    let qtde = 1000
+    await this.refreshAllOrdens();
+    console.log(this.totalordens)
 
-    while(num < 9000){
+    this.showtable = true
+    this.calcular()
 
-      this.querySubscription = this.apollo
-      .watchQuery<any>({
-        query: GET_POSTS,
-        variables: { skip:num, take:qtde, aberturaDe: `${ano}-01-01`, aberturaAte: `${ano}-12-31` },
-      })
-      .valueChanges.subscribe(({ data, loading }) => {
-        this.loading = loading;
-        data.ordensServico.forEach((element:any) => {
-          this.totalordens.push(element)
-        });
+  }
 
-      });
+  async refreshAllOrdens() {
+    this.totalordens = [];
+    await this.fillOrdensRecursive();
+  }
 
-      num += 1000
+  async fillOrdensRecursive(pageIndex = 0) {
+    try {
+      const { data } = await this.apollo
+        .watchQuery<any>({
+          query: GET_ORDENS,
+          variables: {
+            skip: pageIndex * 1000,
+            take: 1000,
+            aberturaDe: `${this.ano}-01-01 00:00:00`,
+            aberturaAte: `${this.ano}-12-31 00:00:00`
+          },
+        })
+        .refetch();
+
+      const ordensServico = data.ordensServico as any[];
+      this.totalordens = this.totalordens.concat(ordensServico);
+
+      if (ordensServico.length > 0) {
+        await this.fillOrdensRecursive(pageIndex + 1);
+      }
+    } catch (error) {
+      console.error(error);
     }
-
-    setTimeout(() => this.showtable = true, 10000)
-    setTimeout(() => this.calcular(), 10000)
-
-    
   }
 
   calcular(){
