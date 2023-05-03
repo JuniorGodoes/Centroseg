@@ -77,11 +77,11 @@ button{
     max-width: 90px;
 }
 
-.spinner{
+/* .spinner{
     display: flex;
     justify-content: center;
     text-align: center;
-}
+} */
 
 mat-card{
     margin: 20px 20px;
@@ -146,6 +146,10 @@ mat-form-field{
 
 .filtros button{
     max-width: 90px;
+}
+
+.card-table{
+    padding: 10px;
 }
 
 .filtros-receitas{
